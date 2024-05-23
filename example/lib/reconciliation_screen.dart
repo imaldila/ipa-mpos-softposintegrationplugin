@@ -5,23 +5,21 @@ import 'package:app_communication_plugin/app_communication_plugin.dart';
 import 'package:app_communication_plugin/enums/transaction_type.dart';
 import 'package:flutter/material.dart';
 
-class PurchaseCashbackScreen extends StatefulWidget {
-  const PurchaseCashbackScreen({Key? key}) : super(key: key);
+class ReconciliationScreen extends StatefulWidget {
+  const ReconciliationScreen({Key? key}) : super(key: key);
 
   @override
-  State<PurchaseCashbackScreen> createState() => _PurchaseCashbackScreenState();
+  State<ReconciliationScreen> createState() => _ReconciliationScreenState();
 }
 
-class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
-  String _amount = "";
-  String _cashbackAmount = "";
+class _ReconciliationScreenState extends State<ReconciliationScreen> {
   String _response = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("PurchaseCashback"),
+          title: const Text("Reconciliation"),
         ),
         body: buildBody());
   }
@@ -37,10 +35,6 @@ class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _response != "" ? Text(_response.toString()) : Container(),
-                  const SizedBox(height: 12),
-                  amountTextField(),
-                  const SizedBox(height: 12),
-                  cashbackTextField(),
                   const SizedBox(height: 12),
                 ],
               ),
@@ -64,46 +58,9 @@ class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
     );
   }
 
-  Widget amountTextField() {
-    return TextField(
-      keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
-        hintText: "Enter amount",
-      ),
-      onChanged: (value) {
-        _amount = value;
-      },
-    );
-  }
-
-  Widget cashbackTextField() {
-    return TextField(
-      keyboardType: TextInputType.number,
-      decoration: const InputDecoration(
-        hintText: "Enter cashback amount",
-      ),
-      onChanged: (value) {
-        _cashbackAmount = value;
-      },
-    );
-  }
-
   // methods
 
   void onChargeButtonPressed() {
-    if (_amount == "") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter amount first")),
-      );
-      return;
-    }
-    if (_cashbackAmount == "") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter cashback amount")),
-      );
-      return;
-    }
-
     openSoftposApp();
   }
 
@@ -112,9 +69,7 @@ class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
       Map<String, dynamic> data = {};
 
       data.addAll({
-        "amount": _amount,
-        "cashBackAmount": _cashbackAmount,
-        "paymentApp": "softpos",
+        "paymentApp": "softpos",//optional
       });
 
       if (Platform.isIOS) {
@@ -125,7 +80,7 @@ class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
 
       var response = await AppCommunicationPlugin.openSoftposApp(
         data,
-        TransactionTypesToPay.PurchaseCashBack,
+        TransactionTypesToPay.Reconciliation,
       );
       if (response != null) {
         log("Response :: " + response.toString());
@@ -135,12 +90,6 @@ class _PurchaseCashbackScreenState extends State<PurchaseCashbackScreen> {
     } catch (error) {
       _response = error.toString();
       setState(() {});
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(
-      //     content: Text(error.toString()),
-      //     duration: const Duration(seconds: 10),
-      //   ),
-      // );
     }
   }
 }

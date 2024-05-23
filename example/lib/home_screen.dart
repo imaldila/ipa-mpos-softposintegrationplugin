@@ -1,5 +1,6 @@
 import 'package:app_communication_plugin/enums/transaction_type.dart';
 import 'package:app_communication_plugin_example/purchase_cashback_screen.dart';
+import 'package:app_communication_plugin_example/reconciliation_screen.dart';
 import 'package:app_communication_plugin_example/refund_screen.dart';
 import 'package:app_communication_plugin_example/sale_and_cashadvance_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 openRefundScreen();
               },
             ),
+            ElevatedButton(
+              child: const Text("Reconciliation"),
+              onPressed: () {
+                openReconciliationScreen();
+              },
+            ),
           ],
         ),
       ),
@@ -67,6 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void openRefundScreen() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return const RefundScreen();
+    }));
+  }
+
+  void openReconciliationScreen() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return const ReconciliationScreen();
     }));
   }
 }

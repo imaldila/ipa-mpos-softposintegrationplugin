@@ -5,4 +5,5 @@ enum TransactionTypesToPay {
   PurchaseCashBack,
   CashAdvanceSale,
   Refund,
+  Reconciliation,
 }

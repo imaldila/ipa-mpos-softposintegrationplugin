@@ -5,7 +5,7 @@
         <!-- Explicit apps you know in advance about: -->
         <package android:name="com.interpaymea.softpos"/>
         <package android:name="com.interpaymea.softpos.szzt"/>
-        </queries>
+    </queries>
 
     
    <application

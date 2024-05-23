@@ -6,14 +6,12 @@ import 'package:app_communication_plugin/enums/transaction_type.dart';
 import 'package:flutter/material.dart';
 
 class SaleAndCashAdvanceScreens extends StatefulWidget {
-  const SaleAndCashAdvanceScreens({Key? key, required this.transactionTypes})
-      : super(key: key);
+  const SaleAndCashAdvanceScreens({Key? key, required this.transactionTypes}) : super(key: key);
 
   final TransactionTypesToPay transactionTypes;
 
   @override
-  State<SaleAndCashAdvanceScreens> createState() =>
-      _SaleAndCashAdvanceScreensState();
+  State<SaleAndCashAdvanceScreens> createState() => _SaleAndCashAdvanceScreensState();
 }
 
 class _SaleAndCashAdvanceScreensState extends State<SaleAndCashAdvanceScreens> {
@@ -60,8 +58,7 @@ class _SaleAndCashAdvanceScreensState extends State<SaleAndCashAdvanceScreens> {
       },
       child: const Text("Charge"),
       style: ButtonStyle(
-        fixedSize: MaterialStateProperty.all(
-            Size(MediaQuery.of(context).size.width, 40)),
+        fixedSize: MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 40)),
       ),
     );
   }
@@ -98,6 +95,10 @@ class _SaleAndCashAdvanceScreensState extends State<SaleAndCashAdvanceScreens> {
       data.addAll({
         "amount": _amount,
         "paymentApp": "softpos",
+        "industrySpecific1": "Test industry", //optional Provider name optional
+        "industrySpecific2": "industry_data2", //optional
+        "industrySpecific3": "specific data 3", //optional
+        "industrySpecific4": "data 4", //optional
       });
 
       if (Platform.isIOS) {

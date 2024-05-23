@@ -206,3 +206,73 @@ void openSoftposApp() async {
 
 Note : For refund, you need to send all the above fields, for all this fields you will get from your transaction response. Please see example code for more information.
 Send data without any change in all these fields.
+
+## Optional Fields: 
+
+  In industrySpecific1, industrySpecific2, industrySpecific3, industrySpecific4. These fields can take values based on industry types.
+  
+```
+  "industrySpecific1": "Laptop",
+  "industrySpecific2": "1",
+  "industrySpecific3": "5%OFF",
+  "industrySpecific4": "Standard Shipping"
+```
+ 
+## Industry-Specific Data
+The following fields are optional and can take values based on industry types:
+
+#### Airline Industry:
+	1. Flight Information: Flight number, departure and arrival airports, date, and time.
+	2. Seat Information: Seat number, class of service (e.g., economy, business, first class).
+	3. Baggage Fees: If applicable, details about baggage fees and allowances.
+
+#### Hotel Industry:
+	1. Room Information: Room number, type of room (e.g., standard, suite).
+	2. Check-in/Check-out Times: Date and time of check-in and check-out.
+	3. Additional Charges: Charges for amenities or services used during the stay (e.g., minibar, room service).
+	
+#### Retail Industry:
+	1. Product Details: Description, quantity, and price of purchased items.
+	2. Discounts or Promotions: Applied discounts, promotional codes, or loyalty program points.
+	3. Shipping Information: For online purchases, details about shipping address and method.
+
+#### Restaurant Industry:
+	1. Menu Items: Details of food and beverages ordered.
+	2. Table Number: For dine-in transactions, the table at which the customer is seated.
+	3. Service Charge/Tips: Optional gratuities or service charges.
+
+#### Entertainment Industry (e.g., Theater, Concerts):
+	1. Event Information: Title, date, and time of the performance or event.
+	2. Seat or Ticket Details: Section, row, and seat number for assigned seating.
+ 
+#### Healthcare Industry:
+    1. Patient Information: Patient name, ID, or relevant medical identifiers.
+    2. Service Codes: Codes for specific medical services or procedures.
+    3. Insurance Information: If applicable, details about the patient's insurance.
+ 
+#### Subscription Services:
+	1. Subscription Type: Details about the subscription plan or tier.
+	2. Renewal Information: Dates for subscription renewal.
+ 
+#### Education Industry (e.g., Universities):
+    1. Student Information: Student ID, course details.
+    2. Tuition and Fees: Details about tuition payments, fees, or related charges.
+ 
+#### Transportation Services (e.g., Taxi, Ride-Sharing):
+    1. Pickup and Drop-off Locations: Addresses or coordinates for the start and end of the      
+     journey.
+    2. Distance Traveled: For services charged based on distance.
+ 
+#### Logistics Services (e.g., Delivery Services):
+    1. Order Number: The order number from Logistics Management System against which       
+         the payment was collected.
+    2. Pickup Location: Address or coordinates for the start of the journey.
+    3. Drop-off Location: Address or coordinates for the end of the journey.
+
+
+
+
+
+
+
+

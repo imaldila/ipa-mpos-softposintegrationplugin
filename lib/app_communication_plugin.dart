@@ -86,18 +86,31 @@ class AppCommunicationPlugin {
   /// request parameters => amount
   static Future<Map<String, dynamic>?> openSoftposApp(Map<String, dynamic> requestData, TransactionTypesToPay transactionType) async {
     try {
-      assert(requestData["amount"] != null, "amount must not be null");
-      assert(double.tryParse(requestData["amount"].toString()) != null, "Unable to parse amount");
-      double amount = double.parse(requestData["amount"].toString());
+      if (transactionType != TransactionTypesToPay.Reconciliation) {
+        assert(requestData["amount"] != null, "amount must not be null");
+      }
+      //commented assertion for double conversion for amount
+      // assert(double.tryParse(requestData["amount"].toString()) != null, "Unable to parse amount");
+
+      //commented double conversion for amount as it will be handled in softpos
+      // double amount = double.parse(requestData["amount"].toString());
 
       // if type is cashback
       if (transactionType == TransactionTypesToPay.PurchaseCashBack) {
         assert(requestData["cashBackAmount"] != null, "cashBackAmount must not be null");
-        assert(double.tryParse(requestData["cashBackAmount"].toString()) != null, "Unable to parse amount");
-        double cashBackAmount = double.parse(requestData["cashBackAmount"].toString());
-        assert(cashBackAmount < amount, "cashBackAmount must not be greater than amount");
+        //commented assertion for double conversion for cashBackAmount
+        // assert(double.tryParse(requestData["cashBackAmount"].toString()) != null, "Unable to parse amount");
+
+        //commented double conversion for cashBackAmount as it will be handled in softpos
+        // double cashBackAmount = double.parse(requestData["cashBackAmount"].toString());
+
+        //commented check for cashBackAmount and amount as we are not converting data to double
+        // assert(cashBackAmount < amount, "cashBackAmount must not be greater than amount");
+
         // requestData.addAll({"cashBackAmount": cashBackAmount.toStringAsFixed(2)});
-        requestData["cashBackAmount"] = cashBackAmount.toStringAsFixed(2);
+
+        //commented passing converted cashBackAmount
+        // requestData["cashBackAmount"] = cashBackAmount.toStringAsFixed(2);
       }
 
       if (transactionType == TransactionTypesToPay.Refund) {
@@ -108,7 +121,8 @@ class AppCommunicationPlugin {
         assert(requestData["txnToHostId"] != null, "txnToHostId must not be null");
       }
 
-      requestData["amount"] = amount.toStringAsFixed(2);
+      //commented passing converted amount
+      // requestData["amount"] = amount.toStringAsFixed(2);
 
       requestData.addAll({"transaction_type": transactionType.name});
       log("Data sent : " + requestData.toString());

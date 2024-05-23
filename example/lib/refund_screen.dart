@@ -205,7 +205,11 @@ class _RefundScreenState extends State<RefundScreen> {
         "retrievalReferenceNumber": _retrievalReferenceNumber,
         "transactionDate": _transactionDate,
         "txnToHostId": _txnId,
-        "paymentApp": "softpos_szzt",
+        "paymentApp": "softpos",
+        "industrySpecific1": "Test industry", //optional Provider name optional
+        "industrySpecific2": "industry_data2", //optional
+        "industrySpecific3": "specific data 3", //optional
+        "industrySpecific4": "data 4", //optional
       });
 
       if (Platform.isIOS) {
